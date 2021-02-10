@@ -17,12 +17,13 @@ function App() {
   const getCocktails = async() => {
     const response = await fetch(searchType);
     const data = await response.json();
-    console.log(data.drinks)
     setRecipes(data.drinks)
   }
 
   useEffect(() => {
+
     getCocktails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query])
 
   const updateSearch = e => {
