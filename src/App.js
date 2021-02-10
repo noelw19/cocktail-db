@@ -10,20 +10,27 @@ function App() {
   const [ recipes, setRecipes ] = useState([]);
   const [ search, setSearch ] = useState('');
   const [ query, setQuery ] = useState('Margarita');
-  const [ searchType, setSearchType ] = useState(`https://www.thecocktaildb.com/api/json/v1/${APP_ID}/search.php?s=${query}`);
+  
+ 
 
-  const searchByAlc = `https://www.thecocktaildb.com/api/json/v1/${APP_ID}/filter.php?i=${query}`;
+  //const searchByAlc = `https://www.thecocktaildb.com/api/json/v1/${APP_ID}/filter.php?i=${query}`;
 
-  const getCocktails = async() => {
-    const response = await fetch(searchType);
-    const data = await response.json();
-    setRecipes(data.drinks)
-  }
+  // const getCocktails = async() => {
+  //   const response = await fetch(searchType);
+  //   const data = await response.json();
+  //   setRecipes(data.drinks)
+  // }
 
   useEffect(() => {
+    const searchBySpirit = `https://www.thecocktaildb.com/api/json/v1/${APP_ID}/search.php?s=${query}`;
+
+    const getCocktails = async() => {
+      const response = await fetch(searchBySpirit);
+      const data = await response.json();
+      setRecipes(data.drinks)
+    }
 
     getCocktails();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query])
 
   const updateSearch = e => {
@@ -36,9 +43,9 @@ function App() {
     setSearch('');
   }
 
-  const checkbox = () => {
-    setSearchType(searchByAlc)
-  }
+  // const checkbox = () => {
+  //   setSearchType(searchByAlc)
+  // }
 
   return (
     <div className="App">
@@ -46,8 +53,8 @@ function App() {
       <form onSubmit={getSearch} className='search-form'>
         <input className='search-bar' type='text' value={search} onChange={updateSearch} />
         <button className='search-button' type='submit'>Search</button>
-        <input type='checkbox' onChange={checkbox}/>
-        <p>Search by Alcohol</p>
+        {/* <input type='checkbox' onChange={checkbox}/>
+        <p>Search by Alcohol</p> */}
       </form>
 
       <div className='recipe'>
