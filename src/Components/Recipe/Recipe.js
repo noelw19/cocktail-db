@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './recipe.module.css';
 
-const Recipe = ({title, image, method, ing1, ing2, ing3, ing4, ing5, ing6, ing10, msr1, msr2, msr3, msr4, msr5, msr6}) => {
+const Recipe = ({title, image, method, ing1, ing2, ing3, ing4, ing5, ing6, ing10, msr1, msr2, msr3, msr4, msr5, msr6, btn, btnText}) => {
 
 
     return (
@@ -18,6 +18,7 @@ const Recipe = ({title, image, method, ing1, ing2, ing3, ing4, ing5, ing6, ing10
                 {!{ing10} ? null : <p>{ing10}</p>}
             </div>
             <p className={style.method}>{method}</p>
+            <button onClick={btn}>{btnText}</button>
         </div>
     )
 }
