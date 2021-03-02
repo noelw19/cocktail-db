@@ -16,6 +16,7 @@ function App() {
   const [queried, setQueried] = useState(false);
   const [prevSate, setPrevState] = useState();
 
+
   //prev state State so that i can revert back to prevstate when i am done looking at the single card
 
   useEffect(() => {
@@ -33,14 +34,33 @@ function App() {
     const getCocktailByIngredient = async () => {
       const response = await fetch(searchByIngredient);
       const data = await response.json();
-      console.log(data)
-      setIngredientSearch(data.drinks);
-      setIngredientBoolean(true);
+      if(data) {
+        setIngredientSearch(data.drinks);
+        setIngredientBoolean(true);
+        setIsLoading(false);
+      }else if(!data){
+        setIngredientSearch(recipes);
+        setQueried(true);
+        setIsLoading(false);
+      }
+
     };
+
+    function cocktailByNameChecker() {
+      if(recipes.length >= 1 || recipes.length === 1) {
+          setQueried(true);
+          setIsLoading(false);
+          setIngredientBoolean(false);
+
+      }
+    }
+  
+
 
     getCocktails();
     getCocktailByIngredient();
-  }, [query]);
+    cocktailByNameChecker();
+  }, [query, recipes.length]);
 
 
 
@@ -73,11 +93,11 @@ function App() {
   }
 
   //function to return the html for single view
-  const viewSingle = () => {
+  const viewSingle = (arg) => {
     return (
       <div>
-        {isLoading ? <h1>Loading</h1> : <div>{queried && <div className="recipe">
-        {recipes.map((recipe) => (
+        {isLoading ? <h1>Loading</h1> : <div><h2>Cocktails with '{query}' in the name.</h2>{queried && <div className="recipe">
+        {arg.map((recipe) => (
           <RecipeCard
             key={recipe.idDrink}
             title={recipe.strDrink}
@@ -129,6 +149,11 @@ function App() {
     )
   }
 
+  //function to check if the search value is strictly equal to a data.drinks.strDrink
+  //maybe using forEach to check each cocktail object within the recipe state
+
+  
+  console.log(recipes);
   return (
     <div className="App">
       <h1>Noels Cocktail App</h1>
@@ -145,7 +170,8 @@ function App() {
       </form>
 
         {!recipes ? <h2>No results for the search '{query}'</h2> : <>
-          {viewSingle()}
+          
+          {recipes.length >= 1 && viewSingle(recipes)}
           {searchAndRenderAll()}
         </>}
 
