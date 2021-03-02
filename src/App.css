@@ -29,6 +29,25 @@ h2 {
   padding: .5rem;
 }
 
+.scrollBtnContainer {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 5rem;
+}
+
+.scroll {
+  border-radius: 50px;
+  border: none;
+  padding: .5rem;
+  box-shadow:  5px 10px 3px #888888;
+}
+
+.scroll:hover {
+  transform: translateY(-20%);
+  background:black;
+  color: white;
+}
+
 .recipe {
   display: flex;
   justify-content: space-around;

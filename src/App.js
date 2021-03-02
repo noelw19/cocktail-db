@@ -133,9 +133,9 @@ function App() {
     return (
       <div>
           {!isLoading && <div>{ingredientBoolean && <div className='single'>
-          <h2>Cocktails with {query} in the ingredients list.</h2>
-          <div className='recipe' >
-          {ingredientSearch.map((recipe) => (
+          <h2 className='byIngred'>Cocktails with {query} in the ingredients list.</h2>
+          <div className='recipe ' >
+          {ingredientSearch.slice(0, 14).map((recipe) => (
           <RecipeCard 
             key={recipe.idDrink}
             title={recipe.strDrink}
@@ -152,11 +152,15 @@ function App() {
   //function to check if the search value is strictly equal to a data.drinks.strDrink
   //maybe using forEach to check each cocktail object within the recipe state
 
+  function scrollToIngredients() {
+    const element = document.querySelector('.byIngred');
+    element.scrollIntoView();
+  }
   
   console.log(recipes);
   return (
     <div className="App">
-      <h1>Noels Cocktail App</h1>
+      <h1>SEARCH COCKTAIL RECIPES</h1>
       <form onSubmit={getSearch} className="search-form">
         <input
           className="search-bar"
@@ -168,7 +172,7 @@ function App() {
           Search
         </button>
       </form>
-
+      {!isLoading && <div className='scrollBtnContainer' >{ingredientBoolean && <button className='scroll' onClick={scrollToIngredients}>Cocktails including {query}</button>}</div>}
         {!recipes ? <h2>No results for the search '{query}'</h2> : <>
           
           {recipes.length >= 1 && viewSingle(recipes)}
