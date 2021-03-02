@@ -12,6 +12,23 @@ h2 {
   text-align: center;
 }
 
+.single {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.single h2 {
+  border: black 1px solid;
+  border-radius: 50px;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  padding: .5rem;
+}
+
 .recipe {
   display: flex;
   justify-content: space-around;

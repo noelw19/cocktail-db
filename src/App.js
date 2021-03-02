@@ -96,7 +96,7 @@ function App() {
   const viewSingle = (arg) => {
     return (
       <div>
-        {isLoading ? <h1>Loading</h1> : <div><h2>Cocktails with '{query}' in the name.</h2>{queried && <div className="recipe">
+        {isLoading ? <h1>Loading</h1> : <div className='single'><h2>Cocktails with '{query}' in the name.</h2>{queried && <div className="recipe">
         {arg.map((recipe) => (
           <RecipeCard
             key={recipe.idDrink}
@@ -132,7 +132,7 @@ function App() {
   const searchAndRenderAll = () => {
     return (
       <div>
-          {!isLoading && <div>{ingredientBoolean && <div>
+          {!isLoading && <div>{ingredientBoolean && <div className='single'>
           <h2>Cocktails with {query} in the ingredients list.</h2>
           <div className='recipe' >
           {ingredientSearch.map((recipe) => (
