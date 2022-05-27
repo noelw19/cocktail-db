@@ -43,20 +43,24 @@ function App() {
 
     };
 
-    function cocktailByNameChecker() {
-      if(recipes.length >= 1 || recipes.length === 1) {
-          setQueried(true);
-          setIngredientBoolean(false);
+    // function cocktailByNameChecker() {
+    //   if(recipes.length >= 1 || recipes.length === 1) {
+    //       setQueried(true);
+    //       setIngredientBoolean(false);
 
-      }
-    }
+    //   }
+    // }
   
 
 
     getCocktails();
     getCocktailByIngredient();
-    cocktailByNameChecker();
     setIsLoading(false);
+    if(recipes ) {
+
+    } else {
+    // cocktailByNameChecker();
+    }
   }, [query, recipes.length, recipes]);
 
 
