@@ -34,3 +34,10 @@ p{
 .method {
     margin: 1rem 0 1rem 0;
 }
+
+@media only screen and (max-width:756px) {
+    .recipeContainer {
+      max-width: 100vw;
+      height: auto;
+    }
+  }

@@ -28,7 +28,6 @@ function App() {
       const response = await fetch(searchBySpirit);
       const data = await response.json();
       setRecipes(data.drinks);
-      setIsLoading(false);
     };
 
     const getCocktailByIngredient = async () => {
@@ -37,11 +36,9 @@ function App() {
       if(data) {
         setIngredientSearch(data.drinks);
         setIngredientBoolean(true);
-        setIsLoading(false);
       }else if(!data){
         setIngredientSearch(recipes);
         setQueried(true);
-        setIsLoading(false);
       }
 
     };
@@ -49,7 +46,6 @@ function App() {
     function cocktailByNameChecker() {
       if(recipes.length >= 1 || recipes.length === 1) {
           setQueried(true);
-          setIsLoading(false);
           setIngredientBoolean(false);
 
       }
@@ -60,6 +56,7 @@ function App() {
     getCocktails();
     getCocktailByIngredient();
     cocktailByNameChecker();
+    setIsLoading(false);
   }, [query, recipes.length]);
 
 
@@ -172,10 +169,10 @@ function App() {
           Search
         </button>
       </form>
-      {!isLoading && <div className='scrollBtnContainer' >{ingredientBoolean && <button className='scroll' onClick={scrollToIngredients}>Cocktails including {query}</button>}</div>}
+      {/* {!isLoading && <div className='scrollBtnContainer' >{ingredientBoolean && <button className='scroll' onClick={scrollToIngredients}>Cocktails including {query}</button>}</div>} */}
         {!recipes ? <h2>No results for the search '{query}'</h2> : <>
           
-          {recipes.length >= 1 && viewSingle(recipes)}
+          {recipes.length === 1 && viewSingle(recipes)}
           {searchAndRenderAll()}
         </>}
 
