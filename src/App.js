@@ -57,7 +57,7 @@ function App() {
     getCocktailByIngredient();
     cocktailByNameChecker();
     setIsLoading(false);
-  }, [query, recipes.length]);
+  }, [query, recipes.length, recipes]);
 
 
 
@@ -149,10 +149,10 @@ function App() {
   //function to check if the search value is strictly equal to a data.drinks.strDrink
   //maybe using forEach to check each cocktail object within the recipe state
 
-  function scrollToIngredients() {
-    const element = document.querySelector('.byIngred');
-    element.scrollIntoView();
-  }
+  // function scrollToIngredients() {
+  //   const element = document.querySelector('.byIngred');
+  //   element.scrollIntoView();
+  // }
   
   console.log(recipes);
   return (
